@@ -1,4 +1,3 @@
-
 import hashlib
 from models import User
 from database import get_db

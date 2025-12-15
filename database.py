@@ -21,12 +21,12 @@ def get_db():
 
 
 def init_db():
-    """Pozovem jednom na startu aplikacije da napravi tabele u bazi."""
+
 
     Base.metadata.create_all(bind=engine)
 
     def init_db():
-        """Pozovem jednom na startu aplikacije da napravi tabele u bazi."""
+
 
 
         Base.metadata.create_all(bind=engine)
