@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSV Analysis Tool</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>CSV Analysis Tool</h1>
+    <p class="backend">Backend: http://127.0.0.1:8000</p>
+
+    <!-- REGISTER -->
+    <!-- REGISTER -->
+<div class="card">
+  <h2>Register</h2>
+
+  <input id="reg-username" placeholder="Username">
+  <input id="reg-password" type="password" placeholder="Password">
+
+  <button id="registerBtn">Register</button>
+  <p id="reg-msg"></p>
+</div>
+
+    <!-- LOGIN -->
+    <div class="card">
+      <h2>Login</h2>
+      <input id="log-username" placeholder="Username">
+      <input id="log-password" type="password" placeholder="Password">
+      <div class="row">
+        <button onclick="login()">Login</button>
+        <button class="secondary" onclick="logout()">Logout</button>
+      </div>
+      <p>Token: <span id="token">nema</span></p>
+    </div>
+
+    <!-- UPLOAD CSV -->
+    <div class="card">
+      <h2>Upload CSV + analiza</h2>
+      <input type="file" id="csv-file">
+      <button onclick="uploadCSV()">Upload & Analyze</button>
+    </div>
+
+    <!-- RESULT -->
+    <div class="card">
+      <h2>Rezultat</h2>
+      <pre id="result">{}</pre>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="app.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

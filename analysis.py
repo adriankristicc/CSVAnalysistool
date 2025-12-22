@@ -1,20 +1,21 @@
+# analysis.py
 import csv
 
 
-def is_number(x: str) -> bool:
+def is_number(value: str) -> bool:
     try:
-        float(x)
+        float(value)
         return True
-    except Exception:
+    except ValueError:
         return False
 
 
 def analyze_csv(file_path: str) -> dict:
-
     with open(file_path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
+
         if reader.fieldnames is None:
-            return {"error": "CSV nema header (prvi red mora biti nazivi kolona)"}
+            raise ValueError("CSV nema header")
 
         headers = reader.fieldnames
         numeric_values = {h: [] for h in headers}
@@ -23,8 +24,8 @@ def analyze_csv(file_path: str) -> dict:
         for row in reader:
             rows_count += 1
             for h in headers:
-                value = (row.get(h) or "").strip().replace(",", ".")
-                if value != "" and is_number(value):
+                value = row[h].replace(",", ".")
+                if is_number(value):
                     numeric_values[h].append(float(value))
 
     stats = {}
