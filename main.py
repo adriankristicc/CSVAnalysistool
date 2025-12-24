@@ -11,37 +11,23 @@ from schemas import CSVAnalysisResponse
 
 app = FastAPI(title="CSV Analysis Tool")
 
-# kreiraj bazu/tabele pri startu
 init_db()
 
-# folder za upload
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
-
 
 @app.get("/")
 def home():
     return {"status": "API radi"}
 
-
-# -------- AUTH (BE) --------
 @app.post("/register")
 def register_user(username: str, password: str, db: Session = Depends(get_db)):
     return register(username, password, db)
-
 
 @app.post("/login")
 def login_user(username: str, password: str, db: Session = Depends(get_db)):
     return login(username, password, db)
 
-
-# -------- CSV ANALYZE --------
-@app.get("/analyze")
-def analyze(file_path: str):
-    return analyze_csv(file_path)
-
-
-# -------- CSV UPLOAD + ANALYZE --------
 @app.post("/upload-csv", response_model=CSVAnalysisResponse)
 def upload_csv(file: UploadFile = File(...)):
     if not file.filename.lower().endswith(".csv"):
